@@ -9,6 +9,7 @@ export default class SingleFile extends Component {
         }
 
         this.handleDownload = this.handleDownload.bind(this)
+        this.handleDelete = this.handleDelete.bind(this)
     }
 
     componentDidMount() {
@@ -32,6 +33,19 @@ export default class SingleFile extends Component {
         window.URL.revokeObjectURL(url)
       }
 
+
+    handleDelete() {
+        fetch(`http://127.0.0.1:5000/file/delete/${this.props.id}`, { method: "DELETE" })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            if(data === "file deleted successfully") {
+                this.props.handleDelete(this.props.id)
+            }
+        })
+        .catch(error => console.log(error))
+    }
+
     render() {
         
         if (this.state.file) {
@@ -39,6 +53,7 @@ export default class SingleFile extends Component {
             <div className='single-file-wrapper'>
                 <h3>{this.state.file.name}</h3>
                 <button onClick={this.handleDownload}>Download</button>
+                <button onClick={this.handleDelete}>Delete</button>
             </div>
             )
         } 
