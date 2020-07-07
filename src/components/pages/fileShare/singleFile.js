@@ -48,12 +48,14 @@ export default class SingleFile extends Component {
 
     render() {
         
-        if (this.state.file) {
+        if (this.state.file.name) {
             return (
             <div className='single-file-wrapper'>
                 <h3>{this.state.file.name}</h3>
+            <div className="files-wrapper">
                 <button onClick={this.handleDownload}>Download</button>
-                <button onClick={this.handleDelete}>Delete</button>
+              <button className="delete-button" onClick={this.handleDelete}>Delete</button>
+            </div>  
             </div>
             )
         } 
