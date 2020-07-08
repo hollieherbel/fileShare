@@ -11,6 +11,8 @@ export default function login(props) {
     <input type="password" name="passwordInput" 
     placeholder="Password" value={props.passwordInput} onChange={props.handleChange}></input>
     <button type="submit">Login</button>
+    
+    <p onClick={props.handleClick}>Don't have an account? Click here to sign up!</p>
     </form>
     )
 }
